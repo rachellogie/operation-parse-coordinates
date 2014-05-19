@@ -16,6 +16,7 @@ class MapParser
       end
       y_coordinate -= 1
     end
-
   end
+
+
 end

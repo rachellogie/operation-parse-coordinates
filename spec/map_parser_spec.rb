@@ -1,5 +1,6 @@
 
 require_relative '../lib/MapParser'
+require_relative '../lib/RouteExplainer'
 
 describe 'MapParser' do
   it 'can return a coordinate given an ascii map' do
@@ -52,5 +53,35 @@ HERE
     expected = [6,-3]
     actual = MapParser.new(input_map).find_coordinate
     expect(actual).to eq(expected)
+  end
+
+  it 'can return the coordinate read in from a map' do
+    input_map = File.read('./data/map-07.txt')
+
+    expected = [4,-2]
+    actual = MapParser.new(input_map).find_coordinate
+    expect(actual).to eq(expected)
+  end
+
+  it 'can return the change between maps in plain text' do
+
+    actual = RouteExplainer.new.explain_route
+
+    expected = <<HERE
+started
+moved east by 1
+moved south by 1
+moved south by 1
+moved east by 1
+moved east by 1
+moved east by 1
+moved south by 1
+moved east by 1
+moved east by 1
+moved south by 1
+moved east by 1
+HERE
+    expect(actual).to eq(expected)
+
   end
 end
